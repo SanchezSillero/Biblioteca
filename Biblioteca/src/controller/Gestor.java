@@ -1,17 +1,20 @@
 package controller;
 
-import model.Biblioteca;
+import model.*;
 
 import java.util.Scanner;
 
 public class Gestor {
     Scanner scanner = new Scanner(System.in);
+    Biblioteca biblioteca;
+
+
 
     public void menu() {
         int opcion;
 
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
-        System.out.println("Pulse Enter para empezar");
+        System.out.println("\n\n\t\t\t    Pulse Enter para empezar");
         scanner.nextLine();
         do {
             System.out.println("¿Qué biblioteca desea gestionar?\n\t1. Biblioteca Municipal\t\t\t2. Biblioteca Universidad\t\t\t3. Salir");
@@ -48,19 +51,26 @@ public class Gestor {
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
                 case 1: {
-
+                    System.out.println("Introduce el ISBN del libro");
+                    int isbn = scanner.nextInt();
+                    biblioteca.buscarLibro(isbn);
                     break;
                 }
                 case 2: {
-
+                    System.out.println("Introduce la capacidad del catálogo (número de libros)");
+                    int nLibros= scanner.nextInt();
+                    biblioteca.crearCatalogo(nLibros);
                     break;
                 }
                 case 3: {
-
+                    biblioteca.mostrarCatalogo();
                     break;
                 }
                 case 4: {
-
+                    biblioteca.getCatalogo().add(new LibroTerror());
+                    biblioteca.getCatalogo().add(new LibroComedia());
+                    biblioteca.getCatalogo().add(new Ensayo());
+                    biblioteca.getCatalogo().add(new LibroPoliciaca());
                     break;
                 }
                 case 5: {

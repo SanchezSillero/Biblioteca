@@ -3,6 +3,9 @@ package model;
 public class LibroComedia extends Libro{
     private TipoHumor tipoHumor;
 
+    public LibroComedia() {
+    }
+
     public LibroComedia(int isbn, String nombre, Persona autor, int nPaginas, TipoHumor tipoHumor) {
         super(isbn, nombre, autor, nPaginas);
         this.tipoHumor = tipoHumor;
