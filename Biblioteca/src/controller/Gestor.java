@@ -13,27 +13,29 @@ public class Gestor {
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
         System.out.println("Pulse Enter para empezar");
         scanner.nextLine();
-        System.out.println("¿Qué biblioteca desea gestionar?\n\t1. Biblioteca Municipal\t\t\t2. Biblioteca Universidad\t\t\t3. Salir");
-        opcion = scanner.nextInt();
-        switch (opcion) {
-            case 1: {
-                System.out.println("\t-----BIBLIOTECA MUNICIPAL-----");
-                menuSub();
-                break;
-            }
-            case 2: {
-                System.out.println("---BIBLIOTECA UNIVERSIDAD---");
-                menuSub();
-                break;
-            }
-            case 3: {
-                System.out.println("¡HASTA PRONTO!");
-                break;
-            }
+        do {
+            System.out.println("¿Qué biblioteca desea gestionar?\n\t1. Biblioteca Municipal\t\t\t2. Biblioteca Universidad\t\t\t3. Salir");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1: {
+                    System.out.println("\t-----BIBLIOTECA MUNICIPAL-----");
+                    menuSub();
+                    break;
+                }
+                case 2: {
+                    System.out.println("---BIBLIOTECA UNIVERSIDAD---");
+                    menuSub();
+                    break;
+                }
+                case 3: {
+                    System.out.println("¡HASTA PRONTO!");
+                    break;
+                }
 
-            default:
-                System.out.println("Opción no válida");
-        }
+                default:
+                    System.out.println("Opción no válida");
+            }
+        }while (opcion!=3);
 
     }
 
