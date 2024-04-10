@@ -1,6 +1,6 @@
 package model;
 
-public abstract class Persona {
+public class Persona {
     private String nombre, dni;
 
     public Persona() {

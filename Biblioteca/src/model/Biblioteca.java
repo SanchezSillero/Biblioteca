@@ -1,28 +1,64 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Biblioteca {
+     Scanner scanner = new Scanner(System.in);
+
+
+                                    // ATRIBUTOS DE LA CLASE BIBLIOTECA
     private String nombre;
     private Persona director;
     private ArrayList<Libro> catalogo;
 
+
+
+
+                                    // CONSTRUCTORES DE LA CLASE BIBLIOTECA
     public Biblioteca() {
+    }                                                              //CONSTRUCTOR VACIO
+
+    public Biblioteca(String nombre, String nombreDirector) {                                //CONSTRUCTOR SIN CATALOGO
+        this.nombre = nombre;
+        this.director = new Persona(nombreDirector);
     }
 
-    public Biblioteca(String nombre, Persona director, ArrayList catalogo) {
+    public Biblioteca(String nombre,String nombreDirector, ArrayList catalogo) {            //CONSTRUCTOR CON CATALOGO
         this.nombre = nombre;
-        this.director = director;
+        this.director = new Persona(nombreDirector);
         this.catalogo = new ArrayList<Libro>();
     }
 
 
-    class Libro {
+
+
+                                           //FUNCIONES
+
+    public void crearCatalogo() {                                                       //METODO PARA CREAR UN CATALOGO
+        catalogo = new ArrayList<Libro>();
+    }
+
+    public void buscarLibro(){                                                         //METODO PARA BUSCAR LIBRO POR ISBN
+        System.out.println("Introduzca el ISBN del libro");
+        int isbn = scanner.nextInt();
+        for (Libro libro : catalogo) {
+            if (libro.getIsbn() == isbn){
+                libro.mostrarDatos();
+            }
+        }
+    }
+
+
+
+    /*public class Libro {                               //CLASE LIBRO
+        //ATRIBUTOS
         private int isbn;
         private String nombre;
         private Persona autor;
         private int nPaginas;
 
+        //CONSTRUCTORES
         public Libro() {
         }
 
@@ -37,6 +73,7 @@ public class Biblioteca {
             this.nPaginas = nPaginas;
         }
 
+        //FUNCIONES
         public void mostrarDatos() {
             System.out.println("Datos del libro " + isbn);
             System.out.println("Nombre = " + nombre);
@@ -44,6 +81,7 @@ public class Biblioteca {
             System.out.println("Número de páginas = " + nPaginas);
         }
 
+        //GETTERS & SETTERS
         public int getIsbn() {
             return isbn;
         }
@@ -76,7 +114,7 @@ public class Biblioteca {
             this.nPaginas = nPaginas;
         }
 
-
+        //SUBCLASES DE LIBRO
         class LibroTerror extends Libro {
             private int calificacion;
 
@@ -126,7 +164,7 @@ public class Biblioteca {
             }
         }
 
-        class Ensayo extends Libro{
+        class Ensayo extends Libro {
             private String tema;
 
             public Ensayo(int isbn, String nombre, Persona autor, int nPaginas, String tema) {
@@ -149,7 +187,7 @@ public class Biblioteca {
             }
         }
 
-        class LibroPoliciaca extends Libro{
+        class LibroPoliciaca extends Libro {
             private Trama trama;
             private ArrayList<Persona> listaPersonajes;
 
@@ -188,7 +226,31 @@ public class Biblioteca {
         }
 
 
+    }*/
+
+
+    // GETTERS & SETTERS DE LA CLASE BIBLIOTECA
+    public String getNombre() {
+        return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
+    public Persona getDirector() {
+        return director;
+    }
+
+    public void setDirector(Persona director) {
+        this.director = director;
+    }
+
+    public ArrayList<Libro> getCatalogo() {
+        return catalogo;
+    }
+
+    public void setCatalogo(ArrayList<Libro> catalogo) {
+        this.catalogo = catalogo;
+    }
 }
