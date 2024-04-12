@@ -39,4 +39,11 @@ public class LibreriaExterna implements InterfazAgregable, InterfazBuscador, Int
         System.out.println("No se encontró ningún libro con el ISBN especificado.");
     }
 
+    public ArrayList<Libro> getLibrosFueraCatalogo() {
+        return librosFueraCatalogo;
+    }
+
+    public void setLibrosFueraCatalogo(ArrayList<Libro> librosFueraCatalogo) {
+        this.librosFueraCatalogo = librosFueraCatalogo;
+    }
 }
