@@ -1,6 +1,7 @@
 package controller;
 
 import model.*;
+
 import java.util.Scanner;
 
 public class Gestor {
@@ -17,7 +18,7 @@ public class Gestor {
         int opcionSub;
         do {
             System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar " +
-                    "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Salir");
+                    "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Borrar catálogo\n\t7. \n\t8. Salir");
 
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
@@ -25,16 +26,19 @@ public class Gestor {
                     System.out.println("Introduce el ISBN del libro");
                     long isbn = scanner.nextLong();
                     biblioteca.buscarLibro(isbn);
+                    pulseEnter();
                     break;
                 }
                 case 2: {
                     System.out.println("Introduce la capacidad del catálogo (número de libros)");
                     int nLibros = scanner.nextInt();
                     biblioteca.crearCatalogo(nLibros);
+                    pulseEnter();
                     break;
                 }
                 case 3: {
                     biblioteca.getCatalogo().mostrarCatalogo();
+                    pulseEnter();
                     break;
                 }
                 case 4: {
@@ -43,40 +47,55 @@ public class Gestor {
                     } else {
                         if (biblioteca.getNombre().equalsIgnoreCase("Biblioteca Universidad")) {
                             System.out.println("La biblioteca universidad solo acepta libros de tipo ensayo");
-                            Ensayo ensayo = new Ensayo();
-                            ensayo.pedirDatosLibro();
-                            biblioteca.agregarEnsayo(ensayo);
+                            if (biblioteca.getCatalogo().getListaLibros().size() < biblioteca.getCatalogo().getCapacidad()) {
+                                Ensayo ensayo = new Ensayo();
+                                ensayo.pedirDatosLibro();
+                                biblioteca.getCatalogo().agregarEnsayo(ensayo);
+                                pulseEnter();
+                            } else {
+                                System.out.println("El catálogo está lleno. Borre algún libro primero");
+                                pulseEnter();
+                            }
                         } else {
-                            System.out.println("Seleccione el tipo de libro que se va agregar:");
-                            System.out.println("1. Libro de Terror");
-                            System.out.println("2. Libro de Comedia");
-                            System.out.println("3. Ensayo");
-                            System.out.println("4. Novela Policiaca");
-                            int tipoLibro = scanner.nextInt();
-                            switch (tipoLibro) {
-                                case 1:
-                                    LibroTerror libroTerror = new LibroTerror();
-                                    libroTerror.pedirDatosLibro();
-                                    biblioteca.agregarLibro(libroTerror);
-                                    break;
-                                case 2:
-                                    LibroComedia libroComedia = new LibroComedia();
-                                    libroComedia.pedirDatosLibro();
-                                    biblioteca.getCatalogo().getListaLibros().add(libroComedia);
-                                    break;
-                                case 3:
-                                    Ensayo ensayo = new Ensayo();
-                                    ensayo.pedirDatosLibro();
-                                    biblioteca.getCatalogo().getListaLibros().add(ensayo);
-                                    break;
-                                case 4:
-                                    LibroPoliciaca libroPoliciaca = new LibroPoliciaca();
-                                    libroPoliciaca.pedirDatosLibro();
-                                    biblioteca.getCatalogo().getListaLibros().add(libroPoliciaca);
-                                    break;
-                                default:
-                                    System.out.println("Opción no válida");
-                                    break;
+                            if (biblioteca.getCatalogo().getListaLibros().size() < biblioteca.getCatalogo().getCapacidad()) {
+                                System.out.println("Seleccione el tipo de libro que se va agregar:");
+                                System.out.println("1. Libro de Terror");
+                                System.out.println("2. Libro de Comedia");
+                                System.out.println("3. Ensayo");
+                                System.out.println("4. Novela Policiaca");
+                                int tipoLibro = scanner.nextInt();
+                                switch (tipoLibro) {
+                                    case 1:
+                                        LibroTerror libroTerror = new LibroTerror();
+                                        libroTerror.pedirDatosLibro();
+                                        biblioteca.getCatalogo().agregarLibro(libroTerror);
+                                        pulseEnter();
+                                        break;
+                                    case 2:
+                                        LibroComedia libroComedia = new LibroComedia();
+                                        libroComedia.pedirDatosLibro();
+                                        biblioteca.getCatalogo().agregarLibro(libroComedia);
+                                        pulseEnter();
+                                        break;
+                                    case 3:
+                                        Ensayo ensayo = new Ensayo();
+                                        ensayo.pedirDatosLibro();
+                                        biblioteca.getCatalogo().agregarEnsayo(ensayo);
+                                        pulseEnter();
+                                        break;
+                                    case 4:
+                                        LibroPoliciaca libroPoliciaca = new LibroPoliciaca();
+                                        libroPoliciaca.pedirDatosLibro();
+                                        biblioteca.getCatalogo().agregarLibro(libroPoliciaca);
+                                        pulseEnter();
+                                        break;
+                                    default:
+                                        System.out.println("Opción no válida");
+                                        break;
+                                }
+                            } else {
+                                System.out.println("El catálogo está lleno. Borre algún libro primero");
+                                pulseEnter();
                             }
                         }
                     }
@@ -101,7 +120,7 @@ public class Gestor {
                 }
             }
 
-        } while (opcionSub != 6);
+        } while (opcionSub != 8);
     }
 
     public static void menu(Biblioteca bibliotecaMunicipal, Biblioteca bibliotecaUniversidad) {
@@ -137,6 +156,12 @@ public class Gestor {
                     System.out.println("Opción no válida");
             }
         } while (opcion != 3);
+    }
+
+    public void pulseEnter(){
+        System.out.println("\n\n\t\t\t    Pulse Enter para continuar");
+        scanner.nextLine();
+        scanner.nextLine();
     }
 
     public Biblioteca getBiblioteca() {

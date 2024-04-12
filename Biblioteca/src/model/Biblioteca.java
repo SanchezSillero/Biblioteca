@@ -13,24 +13,14 @@ public class Biblioteca {
     private int catalogoCapacidad;
 
 
-
     //CLASE ANIDADA CATALOGO
-    public class Catalogo{
+    public class Catalogo {
         private ArrayList<Libro> listaLibros;
         private int capacidad;
 
         public Catalogo(int capacidad) {
             this.listaLibros = new ArrayList<>();
             this.capacidad = capacidad;
-        }
-
-        public void agregarLibro(Libro libro){
-            if (listaLibros.size() < capacidad){
-                listaLibros.add(libro);
-                System.out.println("Libro agregado al catálogo");
-            }else {
-                System.out.println("El catálogo está lleno. Borre algún libro primero");
-            }
         }
 
         public void mostrarCatalogo() {
@@ -44,6 +34,23 @@ public class Biblioteca {
             }
 
         }
+
+        public void agregarLibro(Libro libro) {
+            if (listaLibros.size() < capacidad) {
+                listaLibros.add(libro);
+                System.out.println("Libro agregado al catálogo");
+            } else {
+                System.out.println("El catálogo está lleno. Borre algún libro primero");
+            }
+        }
+
+        public void agregarEnsayo(Ensayo ensayo) {
+            if (nombre.equalsIgnoreCase("Biblioteca Universidad")) {
+                catalogo.listaLibros.add(ensayo);
+                System.out.println("Ensayo añadido al catálogo de la Universidad");
+            }
+        }
+
 
         public ArrayList<Libro> getListaLibros() {
             return listaLibros;
@@ -76,10 +83,9 @@ public class Biblioteca {
     public void crearCatalogo(int nLibros) {                                                       //METODO PARA CREAR UN CATALOGO
         if (catalogo == null) {
             catalogo = new Catalogo(nLibros);
-            catalogoCapacidad=nLibros;
+            catalogoCapacidad = nLibros;
             System.out.println("Añadido catálogo con capacidad para " + nLibros + " libros");
-        }
-        else {
+        } else {
             System.out.println("Ya existe un catálogo");
         }
     }
@@ -110,29 +116,6 @@ public class Biblioteca {
         }
 
     }
-
-
-    public void agregarLibro(Libro libro){
-        if (catalogo.listaLibros.size() < catalogoCapacidad){
-            catalogo.listaLibros.add(libro);
-            System.out.println("Libro agregado al catálogo");
-        }else {
-            System.out.println("El catálogo está lleno. Borre algún libro primero");
-        }
-    }
-    public void agregarEnsayo(Ensayo ensayo){
-        if (this.nombre.equalsIgnoreCase("Biblioteca Universidad")) {
-            if (catalogo.listaLibros.size() < catalogoCapacidad) {
-                catalogo.listaLibros.add(ensayo);
-                System.out.println("Ensayo añadido al catálogo de la Universidad");
-            } else {
-                System.out.println("El catálogo está lleno. Borre algún libro primero");
-            }
-        }else {
-            System.out.println("Esta biblioteca solo acepta ensayos");
-        }
-    }
-
 
 
     // GETTERS & SETTERS
