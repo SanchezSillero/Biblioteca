@@ -8,7 +8,59 @@ public class Biblioteca {
     Scanner scanner = new Scanner(System.in);
     private String nombre;
     private Persona director;
-    private ArrayList<Libro> catalogo;
+    private Catalogo catalogo;
+    //private ArrayList<Libro> catalogo;
+    private int catalogoCapacidad;
+
+
+
+    //CLASE ANIDADA CATALOGO
+    public class Catalogo{
+        private ArrayList<Libro> listaLibros;
+        private int capacidad;
+
+        public Catalogo(int capacidad) {
+            this.listaLibros = new ArrayList<>();
+            this.capacidad = capacidad;
+        }
+
+        public void agregarLibro(Libro libro){
+            if (listaLibros.size() < capacidad){
+                listaLibros.add(libro);
+                System.out.println("Libro agregado al catálogo");
+            }else {
+                System.out.println("El catálogo está lleno. Borre algún libro primero");
+            }
+        }
+
+        public void mostrarCatalogo() {
+            if (listaLibros.isEmpty()) {
+                System.out.println("El catálogo no contiene libro alguno");
+            } else {
+                for (Libro libro : listaLibros) {
+                    libro.mostrarDatos();
+                    System.out.println("-----------------------------------");
+                }
+            }
+
+        }
+
+        public ArrayList<Libro> getListaLibros() {
+            return listaLibros;
+        }
+
+        public void setListaLibros(ArrayList<Libro> listaLibros) {
+            this.listaLibros = listaLibros;
+        }
+
+        public int getCapacidad() {
+            return capacidad;
+        }
+
+        public void setCapacidad(int capacidad) {
+            this.capacidad = capacidad;
+        }
+    }
 
     // CONSTRUCTORES DE LA CLASE BIBLIOTECA
     public Biblioteca() {
@@ -19,18 +71,23 @@ public class Biblioteca {
         this.director = new Persona(nombreDirector);
     }
 
-
     //FUNCIONES
 
     public void crearCatalogo(int nLibros) {                                                       //METODO PARA CREAR UN CATALOGO
-        catalogo = new ArrayList<Libro>(nLibros);
-        System.out.println("Añadido catálogo con capacidad para " + nLibros + " libros");
+        if (catalogo == null) {
+            catalogo = new Catalogo(nLibros);
+            catalogoCapacidad=nLibros;
+            System.out.println("Añadido catálogo con capacidad para " + nLibros + " libros");
+        }
+        else {
+            System.out.println("Ya existe un catálogo");
+        }
     }
 
     public void buscarLibro(long isbn) {                                                         //METODO PARA BUSCAR LIBRO POR ISBN
         isbn = scanner.nextInt();
         boolean encontrado = false;
-        for (Libro libro : catalogo) {
+        for (Libro libro : catalogo.listaLibros) {
             if (libro.getIsbn() == isbn) {
                 libro.mostrarDatos();
                 encontrado = true;
@@ -43,16 +100,39 @@ public class Biblioteca {
     }
 
     public void mostrarCatalogo() {
-        if (catalogo.isEmpty()) {
+        if (catalogo.listaLibros.isEmpty()) {
             System.out.println("El catálogo no contiene libro alguno");
         } else {
-            for (Libro libro : catalogo) {
+            for (Libro libro : catalogo.listaLibros) {
                 libro.mostrarDatos();
                 System.out.println("-----------------------------------");
             }
         }
 
     }
+
+
+    public void agregarLibro(Libro libro){
+        if (catalogo.listaLibros.size() < catalogoCapacidad){
+            catalogo.listaLibros.add(libro);
+            System.out.println("Libro agregado al catálogo");
+        }else {
+            System.out.println("El catálogo está lleno. Borre algún libro primero");
+        }
+    }
+    public void agregarEnsayo(Ensayo ensayo){
+        if (this.nombre.equalsIgnoreCase("Biblioteca Universidad")) {
+            if (catalogo.listaLibros.size() < catalogoCapacidad) {
+                catalogo.listaLibros.add(ensayo);
+                System.out.println("Ensayo añadido al catálogo de la Universidad");
+            } else {
+                System.out.println("El catálogo está lleno. Borre algún libro primero");
+            }
+        }else {
+            System.out.println("Esta biblioteca solo acepta ensayos");
+        }
+    }
+
 
 
     // GETTERS & SETTERS
@@ -72,11 +152,11 @@ public class Biblioteca {
         this.director = director;
     }
 
-    public ArrayList<Libro> getCatalogo() {
+    public Catalogo getCatalogo() {
         return catalogo;
     }
 
-    public void setCatalogo(ArrayList<Libro> catalogo) {
+    public void setCatalogo(Catalogo catalogo) {
         this.catalogo = catalogo;
     }
 }

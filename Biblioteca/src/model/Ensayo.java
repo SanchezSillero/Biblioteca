@@ -15,7 +15,7 @@ public class Ensayo extends Libro{
     @Override
     public void mostrarDatos() {
         super.mostrarDatos();
-        System.out.println("Tema = " + tema);
+        System.out.println("Tema: " + tema);
     }
 
     @Override

@@ -19,8 +19,8 @@ public class LibroPoliciaca extends Libro{
     @Override
     public void mostrarDatos() {
         super.mostrarDatos();
-        System.out.println("Trama = " + trama);
-        System.out.println("Lista de personajes = ");
+        System.out.println("Trama: " + trama);
+        System.out.println("Lista de personajes: ");
         for (Persona personaje : listaPersonajes) {
             System.out.println(personaje.getNombre());
         }

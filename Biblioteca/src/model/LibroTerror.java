@@ -14,7 +14,7 @@ public class LibroTerror extends Libro{
     @Override
     public void mostrarDatos() {
         super.mostrarDatos();
-        System.out.println("Calificación = +" + calificacion);
+        System.out.println("Calificación: +" + calificacion);
     }
 
     @Override
