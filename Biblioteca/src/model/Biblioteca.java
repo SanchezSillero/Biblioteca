@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Biblioteca {
-                                    // ATRIBUTOS DE LA CLASE BIBLIOTECA
+    // ATRIBUTOS DE LA CLASE BIBLIOTECA
     Scanner scanner = new Scanner(System.in);
     private String nombre;
     private Persona director;
     private ArrayList<Libro> catalogo;
 
-                                    // CONSTRUCTORES DE LA CLASE BIBLIOTECA
+    // CONSTRUCTORES DE LA CLASE BIBLIOTECA
     public Biblioteca() {
     }                                                                   //CONSTRUCTOR VACIO
 
@@ -19,54 +19,45 @@ public class Biblioteca {
         this.director = new Persona(nombreDirector);
     }
 
-    public Biblioteca(String nombre,String nombreDirector, ArrayList catalogo) {            //CONSTRUCTOR CON CATALOGO
+    public Biblioteca(String nombre, String nombreDirector, ArrayList catalogo) {            //CONSTRUCTOR CON CATALOGO
         this.nombre = nombre;
         this.director = new Persona(nombreDirector);
         this.catalogo = new ArrayList<Libro>();
     }
 
-                                           //FUNCIONES
+    //FUNCIONES
 
     public void crearCatalogo(int nLibros) {                                                       //METODO PARA CREAR UN CATALOGO
         catalogo = new ArrayList<Libro>(nLibros);
-        System.out.println("Añadido catálogo con capacidad para "+nLibros+" libros");
+        System.out.println("Añadido catálogo con capacidad para " + nLibros + " libros");
     }
 
-    public void buscarLibro(int isbn){                                                         //METODO PARA BUSCAR LIBRO POR ISBN
+    public void buscarLibro(int isbn) {                                                         //METODO PARA BUSCAR LIBRO POR ISBN
         isbn = scanner.nextInt();
         boolean encontrado = false;
         for (Libro libro : catalogo) {
-            if (libro.getIsbn() == isbn){
+            if (libro.getIsbn() == isbn) {
                 libro.mostrarDatos();
                 encontrado = true;
                 break;
             }
         }
-        if (!encontrado){
+        if (!encontrado) {
             System.out.println("No hay ningún libro con este ISBN en el catálogo");
         }
     }
 
     public void mostrarCatalogo() {
-        if (catalogo.isEmpty()){
+        if (catalogo.isEmpty()) {
             System.out.println("El catálogo no contiene libro alguno");
-        }else {
+        } else {
             for (Libro libro : catalogo) {
                 libro.mostrarDatos();
+                System.out.println("-----------------------------------");
             }
         }
-        
+
     }
-
-
-    public void añadirLibro(Libro libro){
-        if (catalogo!=null) {
-            catalogo.add(libro);
-        }else {
-            System.out.println("Debes crear un catálogo primero");
-        }
-    }
-
 
 
     // GETTERS & SETTERS

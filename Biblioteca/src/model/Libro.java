@@ -26,7 +26,7 @@ public abstract class Libro {
 
     //FUNCIONES
     public void mostrarDatos() {
-        System.out.println("Datos del libro " + isbn);
+        System.out.println("Datos del libro con ISBN: " + isbn);
         System.out.println("Nombre = " + nombre);
         System.out.println("Autor = " + autor.getNombre());
         System.out.println("Número de páginas = " + nPaginas);

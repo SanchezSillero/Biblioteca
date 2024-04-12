@@ -80,41 +80,51 @@ public class Gestor {
                     break;
                 }
                 case 4: {
-                    System.out.println("Seleccione el tipo de libro que se va agregar:");
-                    System.out.println("1. Libro de Terror");
-                    System.out.println("2. Libro de Comedia");
-                    System.out.println("3. Ensayo");
-                    System.out.println("4. Novela Policiaca");
-                    int tipoLibro = scanner.nextInt();
-                    switch (tipoLibro) {
-                        case 1:
-                            LibroTerror libroTerror = new LibroTerror(isbn, nombre, autor, nPaginas, calificacion);
-                            libroTerror.pedirDatosLibro();
-                            biblioteca.añadirLibro(libroTerror);
-                            break;
-                        case 2:
-                            LibroComedia libroComedia = new LibroComedia(isbn, nombre, autor, nPaginas, tipoHumor);
-                            libroComedia.pedirDatosLibro();
-                            biblioteca.añadirLibro(libroComedia);
-                            break;
-                        case 3:
-                            Ensayo ensayo = new Ensayo(isbn, nombre, autor, nPaginas, tema);
-                            ensayo.pedirDatosLibro();
-                            biblioteca.añadirLibro(ensayo);
-                            break;
-                        case 4:
-                            LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, nombre, autor, nPaginas, trama, listaPersonajes);
-                            libroPoliciaca.pedirDatosLibro();
-                            biblioteca.añadirLibro(libroPoliciaca);
-                            break;
-                        default:
-                            System.out.println("Opción no válida");
-                            break;
+                    if (biblioteca.getCatalogo()==null){
+                        System.out.println("No existe ningún catálogo");
+                    }else {
+                        System.out.println("Seleccione el tipo de libro que se va agregar:");
+                        System.out.println("1. Libro de Terror");
+                        System.out.println("2. Libro de Comedia");
+                        System.out.println("3. Ensayo");
+                        System.out.println("4. Novela Policiaca");
+                        int tipoLibro = scanner.nextInt();
+                        switch (tipoLibro) {
+                            case 1:
+                                LibroTerror libroTerror = new LibroTerror(isbn, nombre, autor, nPaginas, calificacion);
+                                libroTerror.pedirDatosLibro();
+                                biblioteca.getCatalogo().add(libroTerror);
+                                break;
+                            case 2:
+                                LibroComedia libroComedia = new LibroComedia(isbn, nombre, autor, nPaginas, tipoHumor);
+                                libroComedia.pedirDatosLibro();
+                                biblioteca.getCatalogo().add(libroComedia);
+                                break;
+                            case 3:
+                                Ensayo ensayo = new Ensayo(isbn, nombre, autor, nPaginas, tema);
+                                ensayo.pedirDatosLibro();
+                                biblioteca.getCatalogo().add(ensayo);
+                                break;
+                            case 4:
+                                LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, nombre, autor, nPaginas, trama, listaPersonajes);
+                                libroPoliciaca.pedirDatosLibro();
+                                biblioteca.getCatalogo().add(libroPoliciaca);
+                                break;
+                            default:
+                                System.out.println("Opción no válida");
+                                break;
+                        }
                     }
                     break;
                 }
                 case 5: {
-
+                    System.out.println("Introduce el ISBN del libro que desea sacar del catálogo");
+                    isbn = scanner.nextInt();
+                    for (Libro libro : biblioteca.getCatalogo()) {
+                        if (isbn == libro.getIsbn()){
+                            biblioteca.getCatalogo().remove(libro);
+                        }
+                    }
                     break;
                 }
                 case 6: {
