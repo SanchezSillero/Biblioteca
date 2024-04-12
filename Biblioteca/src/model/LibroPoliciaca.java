@@ -24,7 +24,7 @@ public class LibroPoliciaca extends Libro{
         for (Persona personaje : listaPersonajes) {
             System.out.println(personaje.getNombre());
         }
-
+        System.out.println("-------------------------------------");
     }
 
     @Override

@@ -112,6 +112,12 @@ public class Gestor {
                     break;
                 }
                 case 6: {
+                    biblioteca.setCatalogo(null);
+                    System.out.println("Catálogo eliminado correctamente");
+                    pulseEnter();
+                    break;
+                }
+                case 8: {
                     System.out.println("Volviendo al menú Bibliotecas");
                     break;
                 }
@@ -126,7 +132,7 @@ public class Gestor {
     public static void menu(Biblioteca bibliotecaMunicipal, Biblioteca bibliotecaUniversidad) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
-        System.out.println("\n\n\t\t\t    Pulse Enter para empezar");
+        System.out.println("\n\n\t\t    Pulse Enter para continuar");
         scanner.nextLine();
 
         int opcion;
@@ -158,7 +164,7 @@ public class Gestor {
         } while (opcion != 3);
     }
 
-    public void pulseEnter(){
+    public void pulseEnter() {
         System.out.println("\n\n\t\t\t    Pulse Enter para continuar");
         scanner.nextLine();
         scanner.nextLine();

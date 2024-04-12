@@ -3,24 +3,53 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Biblioteca {
+public class Biblioteca implements Buscador {
     // ATRIBUTOS DE LA CLASE BIBLIOTECA
     Scanner scanner = new Scanner(System.in);
     private String nombre;
     private Persona director;
     private Catalogo catalogo;
-    //private ArrayList<Libro> catalogo;
     private int catalogoCapacidad;
+    ArrayList<Libro> librosFueraCatalogo = new ArrayList<>();
+
+
+    @Override
+    public void buscarLibro(long isbn) {
+        if (!librosFueraCatalogo.isEmpty()) {
+            for (Libro libro : librosFueraCatalogo) {
+                if (libro.getIsbn() == isbn) {
+                    libro.mostrarDatos();
+                }
+                break;
+            }
+        } else {
+            System.out.println("No hay ningún libro con ese ISBN");
+        }
+    }
 
 
     //CLASE ANIDADA CATALOGO
-    public class Catalogo {
+    public class Catalogo implements Buscador {
         private ArrayList<Libro> listaLibros;
         private int capacidad;
 
         public Catalogo(int capacidad) {
             this.listaLibros = new ArrayList<>();
             this.capacidad = capacidad;
+        }
+
+        @Override
+        public void buscarLibro(long isbn) {
+            if (catalogo != null) {
+                for (Libro libro : catalogo.getListaLibros()) {
+                    if (libro.getIsbn() == isbn) {
+                        libro.mostrarDatos();
+                    }
+                    break;
+                }
+            } else {
+                System.out.println("No hay ningún libro con ese ISBN");
+            }
         }
 
         public void mostrarCatalogo() {
@@ -67,6 +96,8 @@ public class Biblioteca {
         public void setCapacidad(int capacidad) {
             this.capacidad = capacidad;
         }
+
+
     }
 
     // CONSTRUCTORES DE LA CLASE BIBLIOTECA
@@ -90,31 +121,10 @@ public class Biblioteca {
         }
     }
 
-    public void buscarLibro(long isbn) {                                                         //METODO PARA BUSCAR LIBRO POR ISBN
-        isbn = scanner.nextInt();
-        boolean encontrado = false;
-        for (Libro libro : catalogo.listaLibros) {
-            if (libro.getIsbn() == isbn) {
-                libro.mostrarDatos();
-                encontrado = true;
-                break;
-            }
+    public void mostrarDatosFueraCatalago() {
+        for (Libro libroFueraCatalogo : librosFueraCatalogo) {
+            libroFueraCatalogo.mostrarDatos();
         }
-        if (!encontrado) {
-            System.out.println("No hay ningún libro con este ISBN en el catálogo");
-        }
-    }
-
-    public void mostrarCatalogo() {
-        if (catalogo.listaLibros.isEmpty()) {
-            System.out.println("El catálogo no contiene libro alguno");
-        } else {
-            for (Libro libro : catalogo.listaLibros) {
-                libro.mostrarDatos();
-                System.out.println("-----------------------------------");
-            }
-        }
-
     }
 
 
@@ -141,5 +151,13 @@ public class Biblioteca {
 
     public void setCatalogo(Catalogo catalogo) {
         this.catalogo = catalogo;
+    }
+
+    public ArrayList<Libro> getLibrosFueraCatalogo() {
+        return librosFueraCatalogo;
+    }
+
+    public void setLibrosFueraCatalogo(ArrayList<Libro> librosFueraCatalogo) {
+        this.librosFueraCatalogo = librosFueraCatalogo;
     }
 }
