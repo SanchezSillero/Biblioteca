@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public abstract class Libro {
     //ATRIBUTOS
@@ -8,6 +9,8 @@ public abstract class Libro {
     private String nombre;
     private Persona autor;
     private int nPaginas;
+    Scanner scanner = new Scanner(System.in);
+
 
     //CONSTRUCTORES
     public Libro() {
@@ -24,13 +27,30 @@ public abstract class Libro {
         this.nPaginas = nPaginas;
     }
 
+
     //FUNCIONES
     public void mostrarDatos() {
         System.out.println("Datos del libro " + isbn);
         System.out.println("Nombre = " + nombre);
-        System.out.println("Autor = " + autor);
+        System.out.println("Autor = " + autor.getNombre());
         System.out.println("Número de páginas = " + nPaginas);
     }
+
+    public void pedirDatosLibro() {
+        System.out.println("Introduce los datos del libro");
+        System.out.println("ISBN:");
+        isbn = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Título");
+        nombre = scanner.nextLine();
+        System.out.println("Autor");
+        String nombreAutor = scanner.nextLine();
+        autor = new Persona(nombreAutor);
+        System.out.println("Número de páginas");
+        nPaginas = scanner.nextInt();
+    }
+
+
 
     //GETTERS & SETTERS
     public int getIsbn() {

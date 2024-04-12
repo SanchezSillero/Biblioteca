@@ -7,14 +7,14 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
+        //CREAMOS BIBLIOTECAS CON EL CONSTRUCTOR
         Biblioteca bibliotecaMunicipal = new Biblioteca("Biblioteca Municipal", "Francisco Sánchez");
         Biblioteca bibliotecaUniversidad = new Biblioteca("Biblioteca Universidad", "Patricia Sillero");
 
-        Gestor gestor = new Gestor();
-        gestor.menu();
-
+        Gestor.menu(bibliotecaMunicipal, bibliotecaUniversidad);
 
     }
+
 }
+

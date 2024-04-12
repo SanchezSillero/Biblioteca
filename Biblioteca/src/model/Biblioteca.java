@@ -66,20 +66,27 @@ public class Biblioteca {
         
     }
 
-    public void añadirLibroTerror(){
-        catalogo.add(new LibroTerror());
+    public void añadirLibroTerror(LibroTerror libroTerror){
+        if (catalogo!=null) {
+            catalogo.add(libroTerror);
+        }else {
+            System.out.println("Debes crear un catálogo primero");
+        }
     }
 
-    public void añadirLibroComedia(){
-        catalogo.add(new LibroComedia());
+    public void añadirLibroComedia(int isbn, String nombre, Persona autor, int nPaginas, TipoHumor tipoHumor){
+        LibroComedia libroComedia = new LibroComedia(isbn, nombre, autor, nPaginas, tipoHumor);
+        catalogo.add(libroComedia);
     }
 
-    public void añadirEnsayo(){
-        catalogo.add(new Ensayo());
+    public void añadirEnsayo(int isbn, String nombre, Persona autor, int nPaginas, String tema){
+        Ensayo ensayo = new Ensayo(isbn, nombre, autor, nPaginas, tema);
+        catalogo.add(ensayo);
     }
 
-    public void añadirLibroPoliciaca(){
-        catalogo.add(new LibroPoliciaca());
+    public void añadirLibroPoliciaca(int isbn, String nombre, Persona autor, int nPaginas, Trama trama, ArrayList<Persona> listaPersonajes){
+        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, nombre, autor, nPaginas, trama, listaPersonajes);
+        catalogo.add(libroPoliciaca);
     }
 
 

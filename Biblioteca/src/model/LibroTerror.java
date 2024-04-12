@@ -17,6 +17,13 @@ public class LibroTerror extends Libro{
         System.out.println("Calificación = +" + calificacion);
     }
 
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Edad recomendada");
+        int calificacion = scanner.nextInt();
+    }
+
     public int getCalificacion() {
         return calificacion;
     }
