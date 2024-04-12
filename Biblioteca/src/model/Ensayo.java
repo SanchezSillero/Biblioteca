@@ -7,7 +7,7 @@ public class Ensayo extends Libro{
     public Ensayo() {
     }
 
-    public Ensayo(int isbn, String nombre, Persona autor, int nPaginas, String tema) {
+    public Ensayo(long isbn, String nombre, Persona autor, int nPaginas, String tema) {
         super(isbn, nombre, autor, nPaginas);
         this.tema = tema;
     }

@@ -10,7 +10,7 @@ public class LibroPoliciaca extends Libro{
     public LibroPoliciaca() {
     }
 
-    public LibroPoliciaca(int isbn, String nombre, Persona autor, int nPaginas, Trama trama, ArrayList<Persona> listaPersonajes) {
+    public LibroPoliciaca(long isbn, String nombre, Persona autor, int nPaginas, Trama trama, ArrayList<Persona> listaPersonajes) {
         super(isbn, nombre, autor, nPaginas);
         this.trama = trama;
         this.listaPersonajes = listaPersonajes;

@@ -6,7 +6,7 @@ public class LibroTerror extends Libro{
     public LibroTerror() {
     }
 
-    public LibroTerror(int isbn, String nombre, Persona autor, int nPaginas, int calificacion) {
+    public LibroTerror(long isbn, String nombre, Persona autor, int nPaginas, int calificacion) {
         super(isbn, nombre, autor, nPaginas);
         this.calificacion = calificacion;
     }

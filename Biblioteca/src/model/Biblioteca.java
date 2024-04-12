@@ -14,16 +14,11 @@ public class Biblioteca {
     public Biblioteca() {
     }                                                                   //CONSTRUCTOR VACIO
 
-    public Biblioteca(String nombre, String nombreDirector) {                                //CONSTRUCTOR SIN CATALOGO
+    public Biblioteca(String nombre, String nombreDirector) {                                //CONSTRUCTOR SIN CATALOGO (En la biblioteca puede existir o no un catalogo)
         this.nombre = nombre;
         this.director = new Persona(nombreDirector);
     }
 
-    public Biblioteca(String nombre, String nombreDirector, ArrayList catalogo) {            //CONSTRUCTOR CON CATALOGO
-        this.nombre = nombre;
-        this.director = new Persona(nombreDirector);
-        this.catalogo = new ArrayList<Libro>();
-    }
 
     //FUNCIONES
 
@@ -32,7 +27,7 @@ public class Biblioteca {
         System.out.println("Añadido catálogo con capacidad para " + nLibros + " libros");
     }
 
-    public void buscarLibro(int isbn) {                                                         //METODO PARA BUSCAR LIBRO POR ISBN
+    public void buscarLibro(long isbn) {                                                         //METODO PARA BUSCAR LIBRO POR ISBN
         isbn = scanner.nextInt();
         boolean encontrado = false;
         for (Libro libro : catalogo) {

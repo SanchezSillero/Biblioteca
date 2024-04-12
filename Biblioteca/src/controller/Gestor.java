@@ -8,7 +8,8 @@ import java.util.Scanner;
 public class Gestor {
     Scanner scanner = new Scanner(System.in);
     Biblioteca biblioteca;
-    int isbn, calificacion, nPaginas;
+    long isbn;
+    int calificacion, nPaginas;
     String nombre, tema;
     Persona autor;
     Trama trama;
@@ -20,52 +21,17 @@ public class Gestor {
     public Gestor(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
-    public static void menu (Biblioteca bibliotecaMunicipal, Biblioteca bibliotecaUniversidad){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
-        System.out.println("\n\n\t\t\t    Pulse Enter para empezar");
-        scanner.nextLine();
-
-        int opcion;
-        Gestor gestorMunicipal = new Gestor(bibliotecaMunicipal);
-        Gestor gestorUniversidad = new Gestor(bibliotecaUniversidad);
-
-        do {
-            System.out.println("¿Qué biblioteca desea gestionar?\n\t1. Biblioteca Municipal\t\t\t2. Biblioteca Universidad\t\t\t3. Salir");
-            opcion = scanner.nextInt();
-            switch (opcion) {
-                case 1: {
-                    System.out.println("\t-----BIBLIOTECA MUNICIPAL-----");
-                    gestorMunicipal.menuSub(bibliotecaMunicipal);
-                    break;
-                }
-                case 2: {
-                    System.out.println("---BIBLIOTECA UNIVERSIDAD---");
-                    gestorUniversidad.menuSub(bibliotecaUniversidad);
-                    break;
-                }
-                case 3: {
-                    System.out.println("¡HASTA PRONTO!");
-                    break;
-                }
-
-                default:
-                    System.out.println("Opción no válida");
-            }
-        }while (opcion!=3);
-    }
-
     public void menuSub(Biblioteca biblioteca) {
         int opcionSub;
         do {
-            System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar catálogo" +
-                    "\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Salir");
+            System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar " +
+                    "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Salir");
 
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
                 case 1: {
                     System.out.println("Introduce el ISBN del libro");
-                    int isbn = scanner.nextInt();
+                    long isbn = scanner.nextLong();
                     biblioteca.buscarLibro(isbn);
                     break;
                 }
@@ -137,6 +103,41 @@ public class Gestor {
             }
 
         } while (opcionSub != 6);
+    }
+
+    public static void menu (Biblioteca bibliotecaMunicipal, Biblioteca bibliotecaUniversidad){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
+        System.out.println("\n\n\t\t\t    Pulse Enter para empezar");
+        scanner.nextLine();
+
+        int opcion;
+        Gestor gestorMunicipal = new Gestor(bibliotecaMunicipal);
+        Gestor gestorUniversidad = new Gestor(bibliotecaUniversidad);
+
+        do {
+            System.out.println("¿Qué biblioteca desea gestionar?\n\t1. Biblioteca Municipal\t\t\t2. Biblioteca Universidad\t\t\t3. Salir");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1: {
+                    System.out.println("\t-----BIBLIOTECA MUNICIPAL-----");
+                    gestorMunicipal.menuSub(bibliotecaMunicipal);
+                    break;
+                }
+                case 2: {
+                    System.out.println("---BIBLIOTECA UNIVERSIDAD---");
+                    gestorUniversidad.menuSub(bibliotecaUniversidad);
+                    break;
+                }
+                case 3: {
+                    System.out.println("¡HASTA PRONTO!");
+                    break;
+                }
+
+                default:
+                    System.out.println("Opción no válida");
+            }
+        }while (opcion!=3);
     }
 
     public Biblioteca getBiblioteca() {

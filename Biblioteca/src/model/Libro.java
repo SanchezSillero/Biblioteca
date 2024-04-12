@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public abstract class Libro {
     //ATRIBUTOS
-    private int isbn;
+    private long isbn;
     private String nombre;
     private Persona autor;
     private int nPaginas;
@@ -16,7 +16,7 @@ public abstract class Libro {
     public Libro() {
     }
 
-    public Libro(int isbn, String nombre, Persona autor, int nPaginas) {
+    public Libro(long isbn, String nombre, Persona autor, int nPaginas) {
         this.isbn = isbn;
         this.nombre = nombre;
         this.autor = autor;
@@ -35,7 +35,7 @@ public abstract class Libro {
     public void pedirDatosLibro() {
         System.out.println("Introduce los datos del libro");
         System.out.println("ISBN:");
-        isbn = scanner.nextInt();
+        isbn = scanner.nextLong();
         scanner.nextLine();
         System.out.println("Título");
         nombre = scanner.nextLine();
@@ -49,7 +49,7 @@ public abstract class Libro {
 
 
     //GETTERS & SETTERS
-    public int getIsbn() {
+    public long getIsbn() {
         return isbn;
     }
 
@@ -73,7 +73,7 @@ public abstract class Libro {
         this.autor = autor;
     }
 
-    public int getnPaginas() {
+    public long getnPaginas() {
         return nPaginas;
     }
 

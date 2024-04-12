@@ -6,7 +6,7 @@ public class LibroComedia extends Libro{
     public LibroComedia() {
     }
 
-    public LibroComedia(int isbn, String nombre, Persona autor, int nPaginas, TipoHumor tipoHumor) {
+    public LibroComedia(long isbn, String nombre, Persona autor, int nPaginas, TipoHumor tipoHumor) {
         super(isbn, nombre, autor, nPaginas);
         this.tipoHumor = tipoHumor;
     }
