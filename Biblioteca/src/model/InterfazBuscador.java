@@ -1,5 +1,5 @@
 package model;
 
-public interface Buscador {
+public interface InterfazBuscador {
     void buscarLibro(long isbn);
 }

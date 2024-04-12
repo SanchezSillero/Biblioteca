@@ -61,7 +61,4 @@ public class LibroPoliciaca extends Libro{
         return listaPersonajes;
     }
 
-    public void setListaPersonajes(ArrayList<Persona> listaPersonajes) {
-        this.listaPersonajes = listaPersonajes;
-    }
 }

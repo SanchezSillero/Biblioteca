@@ -2,6 +2,7 @@ package controller;
 
 import model.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gestor {
@@ -9,11 +10,28 @@ public class Gestor {
     Biblioteca biblioteca;
     long isbn;
 
+    public Gestor() {
+        this.scanner = scanner;
+    }
 
     public Gestor(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
 
+    /*@Override
+    public void buscarLibro(long isbn) {
+        if (!librosFueraCatalogo.isEmpty()) {
+            for (Libro libro : librosFueraCatalogo) {
+                if (libro.getIsbn() == isbn) {
+                    libro.mostrarDatos();
+                }
+                break;
+            }
+        } else {
+            System.out.println("No hay ningún libro con ese ISBN");
+        }
+    }
+*/
     public void menuSub(Biblioteca biblioteca) {
         int opcionSub;
         do {
@@ -25,7 +43,8 @@ public class Gestor {
                 case 1: {
                     System.out.println("Introduce el ISBN del libro");
                     long isbn = scanner.nextLong();
-                    biblioteca.buscarLibro(isbn);
+
+                    // Aqui quiero buscar libro por isbn en la libreria externa
                     pulseEnter();
                     break;
                 }
@@ -41,7 +60,7 @@ public class Gestor {
                     pulseEnter();
                     break;
                 }
-                case 4: {
+                case 4: { // aqui quiero que al crear un libro se cree tambien en la libreria externa
                     if (biblioteca.getCatalogo() == null) {
                         System.out.println("No existe ningún catálogo");
                     } else {
@@ -129,39 +148,35 @@ public class Gestor {
         } while (opcionSub != 8);
     }
 
-    public static void menu(Biblioteca bibliotecaMunicipal, Biblioteca bibliotecaUniversidad) {
+    public void menu(Biblioteca... bibliotecas) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
         System.out.println("\n\n\t\t    Pulse Enter para continuar");
         scanner.nextLine();
 
         int opcion;
-        Gestor gestorMunicipal = new Gestor(bibliotecaMunicipal);
-        Gestor gestorUniversidad = new Gestor(bibliotecaUniversidad);
+        Gestor[] gestores = new Gestor[bibliotecas.length];
+        for (int i = 0; i < bibliotecas.length; i++) {
+            gestores[i] = new Gestor(bibliotecas[i]);
+        }
 
         do {
-            System.out.println("¿Qué biblioteca desea gestionar?\n\t1. Biblioteca Municipal\t\t\t2. Biblioteca Universidad\t\t\t3. Salir");
-            opcion = scanner.nextInt();
-            switch (opcion) {
-                case 1: {
-                    System.out.println("\t-----BIBLIOTECA MUNICIPAL-----");
-                    gestorMunicipal.menuSub(bibliotecaMunicipal);
-                    break;
-                }
-                case 2: {
-                    System.out.println("---BIBLIOTECA UNIVERSIDAD---");
-                    gestorUniversidad.menuSub(bibliotecaUniversidad);
-                    break;
-                }
-                case 3: {
-                    System.out.println("¡HASTA PRONTO!");
-                    break;
-                }
-
-                default:
-                    System.out.println("Opción no válida");
+            System.out.println("¿Qué biblioteca desea gestionar?");
+            for (int i = 0; i < bibliotecas.length; i++) {
+                System.out.println("\t" + (i + 1) + ". " + bibliotecas[i].getNombre());
             }
-        } while (opcion != 3);
+            System.out.println("\t" + (bibliotecas.length + 1) + ". Salir");
+
+            opcion = scanner.nextInt();
+            if (opcion >= 1 && opcion <= bibliotecas.length) {
+                System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
+                gestores[opcion - 1].menuSub(bibliotecas[opcion - 1]);
+            } else if (opcion == bibliotecas.length + 1) {
+                System.out.println("¡HASTA PRONTO!");
+            } else {
+                System.out.println("Opción no válida");
+            }
+        } while (opcion != bibliotecas.length + 1);
     }
 
     public void pulseEnter() {
@@ -177,6 +192,18 @@ public class Gestor {
 
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
+    }
+
+
+    public void agregarLibro(InterfazAgregable agregable, Libro libro) {
+        agregable.agregarLibro(libro);
+    }
+
+    public void eliminarDeLista(InterfazEliminable eliminable, long isbn) {
+        eliminable.eliminarDeLista(isbn);
+    }
+    public void buscarLibro(InterfazBuscador buscador, long isbn) {
+        buscador.buscarLibro(isbn);
     }
 
 }

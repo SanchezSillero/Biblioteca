@@ -3,33 +3,18 @@ package model;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Biblioteca implements Buscador {
+public class Biblioteca {
     // ATRIBUTOS DE LA CLASE BIBLIOTECA
     Scanner scanner = new Scanner(System.in);
     private String nombre;
     private Persona director;
     private Catalogo catalogo;
     private int catalogoCapacidad;
-    ArrayList<Libro> librosFueraCatalogo = new ArrayList<>();
 
-
-    @Override
-    public void buscarLibro(long isbn) {
-        if (!librosFueraCatalogo.isEmpty()) {
-            for (Libro libro : librosFueraCatalogo) {
-                if (libro.getIsbn() == isbn) {
-                    libro.mostrarDatos();
-                }
-                break;
-            }
-        } else {
-            System.out.println("No hay ningún libro con ese ISBN");
-        }
-    }
 
 
     //CLASE ANIDADA CATALOGO
-    public class Catalogo implements Buscador {
+    public class Catalogo implements InterfazBuscador, InterfazAgregable {
         private ArrayList<Libro> listaLibros;
         private int capacidad;
 
@@ -64,6 +49,7 @@ public class Biblioteca implements Buscador {
 
         }
 
+        @Override
         public void agregarLibro(Libro libro) {
             if (listaLibros.size() < capacidad) {
                 listaLibros.add(libro);
@@ -121,11 +107,7 @@ public class Biblioteca implements Buscador {
         }
     }
 
-    public void mostrarDatosFueraCatalago() {
-        for (Libro libroFueraCatalogo : librosFueraCatalogo) {
-            libroFueraCatalogo.mostrarDatos();
-        }
-    }
+
 
 
     // GETTERS & SETTERS
@@ -153,11 +135,5 @@ public class Biblioteca implements Buscador {
         this.catalogo = catalogo;
     }
 
-    public ArrayList<Libro> getLibrosFueraCatalogo() {
-        return librosFueraCatalogo;
-    }
 
-    public void setLibrosFueraCatalogo(ArrayList<Libro> librosFueraCatalogo) {
-        this.librosFueraCatalogo = librosFueraCatalogo;
-    }
 }

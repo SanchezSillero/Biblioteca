@@ -10,10 +10,6 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public Persona(String nombre, String dni) {
-        this.nombre = nombre;
-        this.dni = dni;
-    }
 
     public String getNombre() {
         return nombre;
@@ -27,7 +23,5 @@ public class Persona {
         return dni;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
+
 }

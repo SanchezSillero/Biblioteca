@@ -1,19 +1,19 @@
 import controller.Gestor;
+import external.LibreriaExterna;
 import model.*;
 
 import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
+        //CREAMOS UNA INSTANCIA DE LIBRERIA EXTERNA PARA LOS LIBROS FUERA DE CATALOGO
+        LibreriaExterna libreriaExterna = new LibreriaExterna();
 
-        //CREAMOS BIBLIOTECAS CON EL CONSTRUCTOR
+        //CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS
         Biblioteca bibliotecaMunicipal = new Biblioteca("Biblioteca Municipal", "Francisco Sánchez");
         Biblioteca bibliotecaUniversidad = new Biblioteca("Biblioteca Universidad", "Patricia Sillero");
-
         // En la bibliotecaUniversidad solo se aceptaran ensayos
 
-        //Creamos un catologo de 4 libros en la biblioteca municipal
-        //bibliotecaMunicipal.crearCatalogo(4);
 
         //Creamos algunos libros
         LibroTerror libroTerror1 = new LibroTerror(1, "Frankenstein", new Persona("Mary Shelley"), 168, 14);
@@ -26,17 +26,25 @@ public class Main {
         LibroPoliciaca libroPoliciaca1 = new LibroPoliciaca(4, "Los crímenes de la calle Morgue", new Persona("Edgar Allan Poe"), 66, Trama.intriga, listaPersonajesLibroPoliciaca1);
         Ensayo ensayo2 = new Ensayo(5, "El arte de la guerra", new Persona("Sun Tzu"), 112, "Estrategia");
 
-        bibliotecaMunicipal.getLibrosFueraCatalogo().add(libroTerror1);
-        bibliotecaMunicipal.getLibrosFueraCatalogo().add(libroComedia1);
-        bibliotecaMunicipal.getLibrosFueraCatalogo().add(ensayo1);
-        bibliotecaMunicipal.getLibrosFueraCatalogo().add(libroPoliciaca1);
-        bibliotecaMunicipal.getLibrosFueraCatalogo().add(ensayo2);
+
+        //CREAMOS UNA INSTANCIA DE GESTOR
+        Gestor gestor = new Gestor();
+
+        //Agregamos los libros a la libreria externa
+        gestor.agregarLibro(libreriaExterna, libroTerror1);
+        gestor.agregarLibro(libreriaExterna, libroComedia1);
+        gestor.agregarLibro(libreriaExterna, ensayo1);
+        gestor.agregarLibro(libreriaExterna, libroPoliciaca1);
+        gestor.agregarLibro(libreriaExterna, ensayo2);
+
+        //Buscamos libros por isbn
+        gestor.buscarLibro(libreriaExterna, 1);
+
+        //Eliminamos libro por isbn
+        gestor.eliminarDeLista(libreriaExterna,1);
 
 
-        //Mostramos la informacion de los libros
-        bibliotecaMunicipal.mostrarDatosFueraCatalago();
 
-        Gestor.menu(bibliotecaMunicipal, bibliotecaUniversidad);
 
     }
 
