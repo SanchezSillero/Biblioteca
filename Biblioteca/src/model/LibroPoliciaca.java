@@ -27,6 +27,28 @@ public class LibroPoliciaca extends Libro{
 
     }
 
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Trama");
+        String tramaStr = scanner.nextLine();
+        trama = Trama.valueOf(tramaStr.toLowerCase());
+        listaPersonajes = pedirPersonajes();
+    }
+
+    public ArrayList<Persona> pedirPersonajes(){
+        ArrayList<Persona> listaPersonajes = new ArrayList<>();
+        System.out.println("Introduce los nombres de los personajes (presiona Enter después de cada nombre, escribe 'fin' para terminar):");
+        String nombrePersonaje;
+        do {
+            nombrePersonaje = scanner.nextLine();
+            if (!nombrePersonaje.equals("fin")) {
+                listaPersonajes.add(new Persona(nombrePersonaje));
+            }
+        } while (!nombrePersonaje.equals("fin"));
+        return listaPersonajes;
+    }
+
     public Trama getTrama() {
         return trama;
     }

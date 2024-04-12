@@ -88,36 +88,24 @@ public class Gestor {
                     int tipoLibro = scanner.nextInt();
                     switch (tipoLibro) {
                         case 1:
-                            /*pedirDatosLibro();
-                            System.out.println("Edad recomendada");
-                            int calificacion = scanner.nextInt();
-                            biblioteca.añadirLibroTerror(isbn, nombre, autor, nPaginas, calificacion);*/
                             LibroTerror libroTerror = new LibroTerror(isbn, nombre, autor, nPaginas, calificacion);
                             libroTerror.pedirDatosLibro();
-                            biblioteca.añadirLibroTerror(libroTerror);
-
+                            biblioteca.añadirLibro(libroTerror);
                             break;
                         case 2:
-                            pedirDatosLibro();
-                            System.out.println("Tipo de humor");
-                            String tipoHumorStr = scanner.next();
-                            TipoHumor tipoHumor = TipoHumor.valueOf(tipoHumorStr.toLowerCase());
-                            biblioteca.añadirLibroComedia(isbn, nombre, autor, nPaginas, tipoHumor);
+                            LibroComedia libroComedia = new LibroComedia(isbn, nombre, autor, nPaginas, tipoHumor);
+                            libroComedia.pedirDatosLibro();
+                            biblioteca.añadirLibro(libroComedia);
                             break;
                         case 3:
-                            pedirDatosLibro();
-                            System.out.println("Temática");
-                            scanner.nextLine();
-                            String tema= scanner.nextLine();
-                            biblioteca.añadirEnsayo(isbn, nombre, autor, nPaginas, tema);
+                            Ensayo ensayo = new Ensayo(isbn, nombre, autor, nPaginas, tema);
+                            ensayo.pedirDatosLibro();
+                            biblioteca.añadirLibro(ensayo);
                             break;
                         case 4:
-                            pedirDatosLibro();
-                            System.out.println("Trama");
-                            String tramaStr = scanner.nextLine();
-                            Trama trama = Trama.valueOf(tramaStr.toLowerCase());
-                            ArrayList<Persona>listaPersonajes = pedirPersonajes();
-                            biblioteca.añadirLibroPoliciaca(isbn, nombre, autor, nPaginas, trama, listaPersonajes);
+                            LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, nombre, autor, nPaginas, trama, listaPersonajes);
+                            libroPoliciaca.pedirDatosLibro();
+                            biblioteca.añadirLibro(libroPoliciaca);
                             break;
                         default:
                             System.out.println("Opción no válida");
@@ -145,34 +133,9 @@ public class Gestor {
         return biblioteca;
     }
 
+
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
 
-    public void pedirDatosLibro() {
-        System.out.println("Introduce los datos del libro");
-        System.out.println("ISBN:");
-        isbn = scanner.nextInt();
-        scanner.nextLine();
-        System.out.println("Título");
-        nombre = scanner.nextLine();
-        System.out.println("Autor");
-        String nombreAutor = scanner.nextLine();
-        autor = new Persona(nombreAutor);
-        System.out.println("Número de páginas");
-        nPaginas = scanner.nextInt();
-    }
-
-    public ArrayList<Persona> pedirPersonajes(){
-        ArrayList<Persona> listaPersonajes = new ArrayList<>();
-        System.out.println("Introduce los nombres de los personajes (presiona Enter después de cada nombre, escribe 'fin' para terminar):");
-        String nombrePersonaje;
-        do {
-            nombrePersonaje = scanner.nextLine();
-            if (!nombrePersonaje.equals("fin")) {
-                listaPersonajes.add(new Persona(nombrePersonaje));
-            }
-        } while (!nombrePersonaje.equals("fin"));
-        return listaPersonajes;
-    }
 }

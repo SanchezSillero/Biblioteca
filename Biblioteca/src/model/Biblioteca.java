@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Biblioteca {
-     Scanner scanner = new Scanner(System.in);
-
-
                                     // ATRIBUTOS DE LA CLASE BIBLIOTECA
+    Scanner scanner = new Scanner(System.in);
     private String nombre;
     private Persona director;
     private ArrayList<Libro> catalogo;
 
-
-
-
                                     // CONSTRUCTORES DE LA CLASE BIBLIOTECA
     public Biblioteca() {
-    }                                                              //CONSTRUCTOR VACIO
+    }                                                                   //CONSTRUCTOR VACIO
 
     public Biblioteca(String nombre, String nombreDirector) {                                //CONSTRUCTOR SIN CATALOGO
         this.nombre = nombre;
@@ -29,9 +24,6 @@ public class Biblioteca {
         this.director = new Persona(nombreDirector);
         this.catalogo = new ArrayList<Libro>();
     }
-
-
-
 
                                            //FUNCIONES
 
@@ -66,27 +58,13 @@ public class Biblioteca {
         
     }
 
-    public void añadirLibroTerror(LibroTerror libroTerror){
+
+    public void añadirLibro(Libro libro){
         if (catalogo!=null) {
-            catalogo.add(libroTerror);
+            catalogo.add(libro);
         }else {
             System.out.println("Debes crear un catálogo primero");
         }
-    }
-
-    public void añadirLibroComedia(int isbn, String nombre, Persona autor, int nPaginas, TipoHumor tipoHumor){
-        LibroComedia libroComedia = new LibroComedia(isbn, nombre, autor, nPaginas, tipoHumor);
-        catalogo.add(libroComedia);
-    }
-
-    public void añadirEnsayo(int isbn, String nombre, Persona autor, int nPaginas, String tema){
-        Ensayo ensayo = new Ensayo(isbn, nombre, autor, nPaginas, tema);
-        catalogo.add(ensayo);
-    }
-
-    public void añadirLibroPoliciaca(int isbn, String nombre, Persona autor, int nPaginas, Trama trama, ArrayList<Persona> listaPersonajes){
-        LibroPoliciaca libroPoliciaca = new LibroPoliciaca(isbn, nombre, autor, nPaginas, trama, listaPersonajes);
-        catalogo.add(libroPoliciaca);
     }
 
 

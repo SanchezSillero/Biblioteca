@@ -18,6 +18,14 @@ public class Ensayo extends Libro{
         System.out.println("Tema = " + tema);
     }
 
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Temática");
+        scanner.nextLine();
+        tema= scanner.nextLine();
+    }
+
     public String getTema() {
         return tema;
     }

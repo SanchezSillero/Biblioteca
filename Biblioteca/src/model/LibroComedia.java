@@ -17,6 +17,14 @@ public class LibroComedia extends Libro{
         System.out.println("Tipo de humor = " + tipoHumor);
     }
 
+    @Override
+    public void pedirDatosLibro() {
+        super.pedirDatosLibro();
+        System.out.println("Tipo de humor");
+        String tipoHumorStr = scanner.next();
+        tipoHumor = TipoHumor.valueOf(tipoHumorStr.toLowerCase());
+    }
+
     public TipoHumor getTipoHumor() {
         return tipoHumor;
     }

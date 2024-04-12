@@ -16,10 +16,6 @@ public abstract class Libro {
     public Libro() {
     }
 
-    public Libro(int isbn) {
-        this.isbn = isbn;
-    }
-
     public Libro(int isbn, String nombre, Persona autor, int nPaginas) {
         this.isbn = isbn;
         this.nombre = nombre;
