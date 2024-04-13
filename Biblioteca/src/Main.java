@@ -12,7 +12,7 @@ public class Main {
 
         //CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS
         Biblioteca bibliotecaMunicipal = new BibliotecaGeneral("Biblioteca Municipal", "Francisco Sánchez");
-        Biblioteca bibliotecaUniversidad = new BibliotecaEspecializada("Biblioteca Universidad", "Patricia Sillero");
+        Biblioteca bibliotecaUniversidad = new BibliotecaEspecializada("Biblioteca Universidad", "Patricia Sillero", TipoLibroAceptado.ENSAYO);
         // En la bibliotecaUniversidad solo se aceptaran ensayos
 
         //Creamos algunos libros

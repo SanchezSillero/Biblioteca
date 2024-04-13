@@ -3,11 +3,11 @@ package model;
 import java.util.Scanner;
 
 public class BibliotecaEspecializada extends Biblioteca {
-    public BibliotecaEspecializada() {
-    }
+    private TipoLibroAceptado tipoLibroAceptado;
 
-    public BibliotecaEspecializada(String nombre, String nombreDirector) {
+    public BibliotecaEspecializada(String nombre, String nombreDirector, TipoLibroAceptado tipoLibroAceptado) {
         super(nombre, nombreDirector);
+        this.tipoLibroAceptado = tipoLibroAceptado;
     }
 
     @Override
@@ -19,5 +19,13 @@ public class BibliotecaEspecializada extends Biblioteca {
         } else {
             System.out.println("Ya existe un catálogo");
         }
+    }
+
+    public TipoLibroAceptado getTipoLibroAceptado() {
+        return tipoLibroAceptado;
+    }
+
+    public void setTipoLibroAceptado(TipoLibroAceptado tipoLibroAceptado) {
+        this.tipoLibroAceptado = tipoLibroAceptado;
     }
 }

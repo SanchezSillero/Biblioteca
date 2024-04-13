@@ -83,69 +83,88 @@ public class Gestor {
                         System.out.println("No existe ningún catálogo");
                         break;
                     }
-                    if (biblioteca.getCatalogo().getListaLibros().size() >= biblioteca.getCatalogo().getCapacidad()){
+                    if (biblioteca.getCatalogo().getListaLibros().size() >= biblioteca.getCatalogo().getCapacidad()) {
                         System.out.println("El catálogo está lleno. Borre algún libro primero");
                         pulseEnter();
                         break;
-                    }
-                    else {
-                        if (biblioteca.getNombre().equalsIgnoreCase("Biblioteca Universidad")) {
-                            System.out.println("La biblioteca universidad solo acepta libros de tipo ensayo");
-                            if (biblioteca.getCatalogo().getListaLibros().size() < biblioteca.getCatalogo().getCapacidad()) {
-                                Ensayo ensayo = new Ensayo();
-                                ensayo.pedirDatosLibro();
-                                biblioteca.getCatalogo().agregarEnsayo(ensayo);
-                                libreriaExterna.agregarLibro(ensayo);
-                                pulseEnter();
-                            } else {
-                                System.out.println("El catálogo está lleno. Borre algún libro primero");
-                                pulseEnter();
+                    } else {
+                        if (biblioteca instanceof BibliotecaEspecializada) {
+                            TipoLibroAceptado tipoLibroAceptado = ((BibliotecaEspecializada) biblioteca).getTipoLibroAceptado();
+                            switch (tipoLibroAceptado) {
+                                case ENSAYO:
+                                    Ensayo ensayo = new Ensayo();
+                                    ensayo.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(ensayo);
+                                    libreriaExterna.agregarLibro(ensayo);
+                                    pulseEnter();
+                                    break;
+                                case TERROR:
+                                    LibroTerror libroTerror = new LibroTerror();
+                                    libroTerror.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(libroTerror);
+                                    libreriaExterna.agregarLibro(libroTerror);
+                                    pulseEnter();
+                                    break;
+                                case COMEDIA:
+                                    LibroComedia libroComedia = new LibroComedia();
+                                    libroComedia.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(libroComedia);
+                                    libreriaExterna.agregarLibro(libroComedia);
+                                    pulseEnter();
+                                    break;
+                                case POLICIACA:
+                                    LibroPoliciaca libroPoliciaca = new LibroPoliciaca();
+                                    libroPoliciaca.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(libroPoliciaca);
+                                    libreriaExterna.agregarLibro(libroPoliciaca);
+                                    pulseEnter();
+                                    break;
+                                default:
+                                    System.out.println("Tipo de libro no válido para esta biblioteca especializada");
+                                    break;
                             }
                         } else {
-                            if (biblioteca.getCatalogo().getListaLibros().size() < biblioteca.getCatalogo().getCapacidad()) {
-                                System.out.println("Seleccione el tipo de libro que se va agregar:");
-                                System.out.println("1. Libro de Terror");
-                                System.out.println("2. Libro de Comedia");
-                                System.out.println("3. Ensayo");
-                                System.out.println("4. Novela Policiaca");
-                                int tipoLibro = scanner.nextInt();
-                                switch (tipoLibro) {
-                                    case 1:
-                                        LibroTerror libroTerror = new LibroTerror();
-                                        libroTerror.pedirDatosLibro();
-                                        biblioteca.getCatalogo().agregarLibro(libroTerror);
-                                        libreriaExterna.agregarLibro(libroTerror);
-                                        pulseEnter();
-                                        break;
-                                    case 2:
-                                        LibroComedia libroComedia = new LibroComedia();
-                                        libroComedia.pedirDatosLibro();
-                                        biblioteca.getCatalogo().agregarLibro(libroComedia);
-                                        libreriaExterna.agregarLibro(libroComedia);
-                                        pulseEnter();
-                                        break;
-                                    case 3:
-                                        Ensayo ensayo = new Ensayo();
-                                        ensayo.pedirDatosLibro();
-                                        biblioteca.getCatalogo().agregarEnsayo(ensayo);
-                                        libreriaExterna.agregarLibro(ensayo);
-                                        pulseEnter();
-                                        break;
-                                    case 4:
-                                        LibroPoliciaca libroPoliciaca = new LibroPoliciaca();
-                                        libroPoliciaca.pedirDatosLibro();
-                                        biblioteca.getCatalogo().agregarLibro(libroPoliciaca);
-                                        libreriaExterna.agregarLibro(libroPoliciaca);
-                                        pulseEnter();
-                                        break;
-                                    default:
-                                        System.out.println("Opción no válida");
-                                        break;
-                                }
-                            } else {
-                                System.out.println("El catálogo está lleno. Borre algún libro primero");
-                                pulseEnter();
+                            System.out.println("Seleccione el tipo de libro que se va agregar:");
+                            System.out.println("1. Libro de Terror");
+                            System.out.println("2. Libro de Comedia");
+                            System.out.println("3. Ensayo");
+                            System.out.println("4. Novela Policiaca");
+                            int tipoLibro = scanner.nextInt();
+                            switch (tipoLibro) {
+                                case 1:
+                                    LibroTerror libroTerror = new LibroTerror();
+                                    libroTerror.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(libroTerror);
+                                    libreriaExterna.agregarLibro(libroTerror);
+                                    pulseEnter();
+                                    break;
+                                case 2:
+                                    LibroComedia libroComedia = new LibroComedia();
+                                    libroComedia.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(libroComedia);
+                                    libreriaExterna.agregarLibro(libroComedia);
+                                    pulseEnter();
+                                    break;
+                                case 3:
+                                    Ensayo ensayo = new Ensayo();
+                                    ensayo.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarEnsayo(ensayo);
+                                    libreriaExterna.agregarLibro(ensayo);
+                                    pulseEnter();
+                                    break;
+                                case 4:
+                                    LibroPoliciaca libroPoliciaca = new LibroPoliciaca();
+                                    libroPoliciaca.pedirDatosLibro();
+                                    biblioteca.getCatalogo().agregarLibro(libroPoliciaca);
+                                    libreriaExterna.agregarLibro(libroPoliciaca);
+                                    pulseEnter();
+                                    break;
+                                default:
+                                    System.out.println("Opción no válida");
+                                    break;
                             }
+
+
                         }
                     }
                     break;
@@ -166,7 +185,7 @@ public class Gestor {
                     pulseEnter();
                     break;
                 }
-                case 7:{
+                case 7: {
 
                     break;
                 }

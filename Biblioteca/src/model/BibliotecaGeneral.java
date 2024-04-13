@@ -1,9 +1,6 @@
 package model;
 
 public class BibliotecaGeneral extends Biblioteca{
-    public BibliotecaGeneral() {
-    }
-
     public BibliotecaGeneral(String nombre, String nombreDirector) {
         super(nombre, nombreDirector);
     }
