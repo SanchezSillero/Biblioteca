@@ -1,12 +1,10 @@
 package model;
 
-import java.util.Scanner;
-
-public class BibliotecaEspecializada extends Biblioteca {
-    public BibliotecaEspecializada() {
+public class BibliotecaGeneral extends Biblioteca{
+    public BibliotecaGeneral() {
     }
 
-    public BibliotecaEspecializada(String nombre, String nombreDirector) {
+    public BibliotecaGeneral(String nombre, String nombreDirector) {
         super(nombre, nombreDirector);
     }
 

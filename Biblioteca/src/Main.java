@@ -11,8 +11,8 @@ public class Main {
         ArrayList<Libro> librosFueraCatalogo = libreriaExterna.getLibrosLibreriaExterna();
 
         //CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS
-        Biblioteca bibliotecaMunicipal = new Biblioteca("Biblioteca Municipal", "Francisco Sánchez");
-        Biblioteca bibliotecaUniversidad = new Biblioteca("Biblioteca Universidad", "Patricia Sillero");
+        Biblioteca bibliotecaMunicipal = new BibliotecaGeneral("Biblioteca Municipal", "Francisco Sánchez");
+        Biblioteca bibliotecaUniversidad = new BibliotecaEspecializada("Biblioteca Universidad", "Patricia Sillero");
         // En la bibliotecaUniversidad solo se aceptaran ensayos
 
         //Creamos algunos libros

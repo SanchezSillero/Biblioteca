@@ -6,7 +6,7 @@ public abstract class Biblioteca implements InterfazBuscador {
     // ATRIBUTOS DE LA CLASE BIBLIOTECA
     private String nombre;
     private Persona director;
-   // private Catalogo catalogo;
+    protected Catalogo catalogo;
 
 
     // CONSTRUCTORES DE LA CLASE BIBLIOTECA
@@ -18,17 +18,9 @@ public abstract class Biblioteca implements InterfazBuscador {
         this.director = new Persona(nombreDirector);
     }
 
-
     //FUNCIONES
-    public void crearCatalogo(int nLibros) {            //METODO PARA CREAR UN CATALOGO
-        if (catalogo == null) {
-            catalogo = new Catalogo(nLibros);
-            int catalogoCapacidad = nLibros;
-            System.out.println("Añadido catálogo con capacidad para " + nLibros + " libros");
-        } else {
-            System.out.println("Ya existe un catálogo");
-        }
-    }
+    public abstract void crearCatalogo(int nLibros);
+
 
     @Override
     public void buscarLibro(long isbn) {
