@@ -7,7 +7,7 @@ public class Biblioteca implements InterfazBuscador {
     private String nombre;
     private Persona director;
     private Catalogo catalogo;
-    private ArrayList<Libro> librosFueraCatalogo;
+
 
     // CONSTRUCTORES DE LA CLASE BIBLIOTECA
     public Biblioteca() {
@@ -17,11 +17,7 @@ public class Biblioteca implements InterfazBuscador {
         this.nombre = nombre;
         this.director = new Persona(nombreDirector);
     }
-    public Biblioteca(String nombre, String nombreDirector, ArrayList<Libro> librosFueraCatalogo) { //CONSTRUCTOR CON LA LISTA DE LIBROS DE LA LIBRERIA EXTERNA
-        this.nombre = nombre;
-        this.director = new Persona(nombreDirector);
-        this.librosFueraCatalogo = librosFueraCatalogo;
-    }
+
 
     //FUNCIONES
     public void crearCatalogo(int nLibros) {            //METODO PARA CREAR UN CATALOGO
@@ -36,17 +32,7 @@ public class Biblioteca implements InterfazBuscador {
 
     @Override
     public void buscarLibro(long isbn) {
-        boolean encontrado = false;
-        for (Libro libro : librosFueraCatalogo) {
-            if (libro.getIsbn() == isbn) {
-                encontrado = true;
-                libro.mostrarDatos();
-                break; // Detenemos la búsqueda una vez que se encuentra el libro
-            }
-        }
-        if (!encontrado) {
-            System.out.println("No se encontró ningún libro con ese ISBN.");
-        }
+
     }
 
     //CLASE ANIDADA CATALOGO
@@ -138,7 +124,4 @@ public class Biblioteca implements InterfazBuscador {
         this.catalogo = catalogo;
     }
 
-    public ArrayList<Libro> getLibrosFueraCatalogo() {
-        return librosFueraCatalogo;
-    }
 }

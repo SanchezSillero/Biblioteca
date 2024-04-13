@@ -5,18 +5,36 @@ import model.*;
 import java.util.ArrayList;
 
 public class LibreriaExterna implements InterfazAgregador, InterfazBuscador, InterfazEliminador {
-    private ArrayList<Libro> librosFueraCatalogo = new ArrayList<>();
+    /* patrón Singleton es un patrón de diseño que garantiza que una clase tenga solo una instancia y proporciona un punto de acceso global a esa instancia
+         Las características principales del patrón Singleton son:
+           1. Constructor privado: El constructor de la clase Singleton se declara como privado para evitar que otras clases instancien la clase directamente.
+           2. Instancia estática: La clase Singleton contiene una instancia privada y estática de sí misma.
+           3. Método estático de acceso: La clase Singleton proporciona un método estático que actúa como punto de acceso global a la instancia Singleton.
+              Este método crea la instancia si aún no existe y devuelve la misma instancia en todas las llamadas subsiguientes.*/
+    private static LibreriaExterna instanciaUnicaLibreriaExterna; //La clase Singleton contiene una instancia privada y estática de sí misma
+    private ArrayList<Libro> librosLibreriaExterna;
+
+    private LibreriaExterna() { //Constructor privado: El constructor de la clase Singleton se declara como privado para evitar que otras clases instancien la clase directamente.
+    librosLibreriaExterna = new ArrayList<>();
+    }
+    // Método estático para obtener la instancia Singleton
+    public static LibreriaExterna getInstance() {
+        if (instanciaUnicaLibreriaExterna == null) {
+            instanciaUnicaLibreriaExterna = new LibreriaExterna();
+        }
+        return instanciaUnicaLibreriaExterna;
+    }
 
 
     @Override
     public void agregarLibro(Libro libro) {
-        librosFueraCatalogo.add(libro);
+        librosLibreriaExterna.add(libro);
     }
 
     @Override
     public void buscarLibro(long isbn) {
         boolean encontrado = false;
-        for (Libro libro : librosFueraCatalogo) {
+        for (Libro libro : librosLibreriaExterna) {
             if (libro.getIsbn() == isbn) {
                 encontrado = true;
                 libro.mostrarDatos();
@@ -30,9 +48,9 @@ public class LibreriaExterna implements InterfazAgregador, InterfazBuscador, Int
 
     @Override
     public void eliminarDeLista(long isbn) {
-        for (Libro libro : librosFueraCatalogo) {
+        for (Libro libro : librosLibreriaExterna) {
             if (libro.getIsbn() == isbn) {
-                librosFueraCatalogo.remove(libro);
+                librosLibreriaExterna.remove(libro);
                 return; // Salir del método después de eliminar el libro
             }
         }
@@ -40,11 +58,11 @@ public class LibreriaExterna implements InterfazAgregador, InterfazBuscador, Int
         System.out.println("No se encontró ningún libro con el ISBN especificado.");
     }
 
-    public ArrayList<Libro> getLibrosFueraCatalogo() {
-        return librosFueraCatalogo;
+    public ArrayList<Libro> getLibrosLibreriaExterna() {
+        return librosLibreriaExterna;
     }
 
-    public void setLibrosFueraCatalogo(ArrayList<Libro> librosFueraCatalogo) {
-        this.librosFueraCatalogo = librosFueraCatalogo;
+    public void setLibrosLibreriaExterna(ArrayList<Libro> librosLibreriaExterna) {
+        this.librosLibreriaExterna = librosLibreriaExterna;
     }
 }

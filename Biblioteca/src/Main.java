@@ -7,12 +7,12 @@ import java.util.ArrayList;
 public class Main {
     public static void main(String[] args) {
         //CREAMOS UNA INSTANCIA DE LIBRERIA EXTERNA PARA LOS LIBROS FUERA DE CATALOGO
-        LibreriaExterna libreriaExterna = new LibreriaExterna();
-        ArrayList<Libro> librosFueraCatalogo = libreriaExterna.getLibrosFueraCatalogo();
+        LibreriaExterna libreriaExterna = LibreriaExterna.getInstance();
+        ArrayList<Libro> librosFueraCatalogo = libreriaExterna.getLibrosLibreriaExterna();
 
-        //CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS CON UNA LISTA EXTERNA DE LIBROS PARA PODER CONSULTAR SUS DATOS INDEPENDIENTEMENTE SI ESTAN EN SU CATALOGO
-        Biblioteca bibliotecaMunicipal = new Biblioteca("Biblioteca Municipal", "Francisco Sánchez", librosFueraCatalogo);
-        Biblioteca bibliotecaUniversidad = new Biblioteca("Biblioteca Universidad", "Patricia Sillero", librosFueraCatalogo);
+        //CREAMOS ALGUNAS INSTANCIAS DE BIBLIOTECAS
+        Biblioteca bibliotecaMunicipal = new Biblioteca("Biblioteca Municipal", "Francisco Sánchez");
+        Biblioteca bibliotecaUniversidad = new Biblioteca("Biblioteca Universidad", "Patricia Sillero");
         // En la bibliotecaUniversidad solo se aceptaran ensayos
 
         //Creamos algunos libros

@@ -1,5 +1,6 @@
 package controller;
 
+import external.LibreriaExterna;
 import model.*;
 
 import java.util.Scanner;
@@ -8,6 +9,7 @@ public class Gestor {
     private Scanner scanner = new Scanner(System.in);
     private Biblioteca biblioteca;
     private long isbn;
+    LibreriaExterna libreriaExterna = LibreriaExterna.getInstance();
 
     //CONSTRUCTORES DE GESTOR
     public Gestor() {
@@ -60,7 +62,7 @@ public class Gestor {
                 case 1: { // Buscar información sobre un libro aunque no este en el catalogo (lo busca en la libreria externa)
                     System.out.println("Introduce el ISBN del libro");
                     long isbn = scanner.nextLong();
-                    biblioteca.buscarLibro(isbn);
+                    libreriaExterna.buscarLibro(isbn);
                     pulseEnter();
                     break;
                 }
@@ -76,7 +78,7 @@ public class Gestor {
                     pulseEnter();
                     break;
                 }
-                case 4: { // aqui quiero que al crear un libro se cree tambien en la libreria externa
+                case 4: { // aqui quiero que al crear un libro se cree tambien en la libreria externa si no existe
                     if (biblioteca.getCatalogo() == null) {
                         System.out.println("No existe ningún catálogo");
                     } else {
@@ -86,6 +88,7 @@ public class Gestor {
                                 Ensayo ensayo = new Ensayo();
                                 ensayo.pedirDatosLibro();
                                 biblioteca.getCatalogo().agregarEnsayo(ensayo);
+                                libreriaExterna.agregarLibro(ensayo);
                                 pulseEnter();
                             } else {
                                 System.out.println("El catálogo está lleno. Borre algún libro primero");
@@ -104,24 +107,28 @@ public class Gestor {
                                         LibroTerror libroTerror = new LibroTerror();
                                         libroTerror.pedirDatosLibro();
                                         biblioteca.getCatalogo().agregarLibro(libroTerror);
+                                        libreriaExterna.agregarLibro(libroTerror);
                                         pulseEnter();
                                         break;
                                     case 2:
                                         LibroComedia libroComedia = new LibroComedia();
                                         libroComedia.pedirDatosLibro();
                                         biblioteca.getCatalogo().agregarLibro(libroComedia);
+                                        libreriaExterna.agregarLibro(libroComedia);
                                         pulseEnter();
                                         break;
                                     case 3:
                                         Ensayo ensayo = new Ensayo();
                                         ensayo.pedirDatosLibro();
                                         biblioteca.getCatalogo().agregarEnsayo(ensayo);
+                                        libreriaExterna.agregarLibro(ensayo);
                                         pulseEnter();
                                         break;
                                     case 4:
                                         LibroPoliciaca libroPoliciaca = new LibroPoliciaca();
                                         libroPoliciaca.pedirDatosLibro();
                                         biblioteca.getCatalogo().agregarLibro(libroPoliciaca);
+                                        libreriaExterna.agregarLibro(libroPoliciaca);
                                         pulseEnter();
                                         break;
                                     default:
