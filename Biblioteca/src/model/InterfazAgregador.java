@@ -1,5 +1,5 @@
 package model;
 
-public interface InterfazAgregable {
+public interface InterfazAgregador {
     void agregarLibro(Libro libro);
 }

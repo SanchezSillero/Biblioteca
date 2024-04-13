@@ -1,9 +1,6 @@
 package model;
 
-import external.LibreriaExterna;
-
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Biblioteca implements InterfazBuscador {
     // ATRIBUTOS DE LA CLASE BIBLIOTECA
@@ -53,7 +50,7 @@ public class Biblioteca implements InterfazBuscador {
     }
 
     //CLASE ANIDADA CATALOGO
-    public class Catalogo implements InterfazAgregable {
+    public class Catalogo implements InterfazAgregador {
 
         //ATRIBUTOS
         private ArrayList<Libro> listaLibros;

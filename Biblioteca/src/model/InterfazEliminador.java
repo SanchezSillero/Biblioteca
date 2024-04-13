@@ -1,5 +1,5 @@
 package model;
 
-public interface InterfazEliminable {
+public interface InterfazEliminador {
     void eliminarDeLista(long isbn);
 }

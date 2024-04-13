@@ -1,9 +1,7 @@
 package controller;
 
-import external.LibreriaExterna;
 import model.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gestor {
@@ -55,7 +53,7 @@ public class Gestor {
         int opcionSub;
         do {
             System.out.println("\t1. Buscar información sobre un libro\n\t2. Construir un catálogo\n\t3. Consultar " +
-                    "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Borrar catálogo\n\t7. \n\t8. Salir");
+                    "catálogo\n\t4. Agregar libro al catálogo\n\t5. Sacar libro del catálogo\n\t6. Borrar catálogo\n\t7. Expotar el catálogo a un fichero\n\t8. Salir");
 
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
@@ -143,7 +141,7 @@ public class Gestor {
                     isbn = scanner.nextInt();
                     for (Libro libro : biblioteca.getCatalogo().getListaLibros()) {
                         if (isbn == libro.getIsbn()) {
-                            biblioteca.getCatalogo().getListaLibros().remove(libro);
+                            biblioteca.getCatalogo().getListaLibros().remove(libro); //excepcion concurrentModification se da cuando solo tengo 1 libro y lo intenta borrar mientras itera dentro del bucle
                         }
                     }
                     break;
@@ -152,6 +150,10 @@ public class Gestor {
                     biblioteca.setCatalogo(null);
                     System.out.println("Catálogo eliminado correctamente");
                     pulseEnter();
+                    break;
+                }
+                case 7:{
+
                     break;
                 }
                 case 8: {
@@ -173,12 +175,12 @@ public class Gestor {
     }
 
     //FUNCIONES PUENTE PARA LAS INTERFACES
-    public void agregarLibro(InterfazAgregable agregable, Libro libro) {
-        agregable.agregarLibro(libro);
+    public void agregarLibro(InterfazAgregador agregador, Libro libro) {
+        agregador.agregarLibro(libro);
     }
 
-    public void eliminarDeLista(InterfazEliminable eliminable, long isbn) {
-        eliminable.eliminarDeLista(isbn);
+    public void eliminarDeLista(InterfazEliminador eliminador, long isbn) {
+        eliminador.eliminarDeLista(isbn);
     }
 
     public void buscarLibro(InterfazBuscador buscador, long isbn) {

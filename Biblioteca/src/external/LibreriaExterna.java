@@ -4,7 +4,7 @@ import model.*;
 
 import java.util.ArrayList;
 
-public class LibreriaExterna implements InterfazAgregable, InterfazBuscador, InterfazEliminable {
+public class LibreriaExterna implements InterfazAgregador, InterfazBuscador, InterfazEliminador {
     private ArrayList<Libro> librosFueraCatalogo = new ArrayList<>();
 
 
