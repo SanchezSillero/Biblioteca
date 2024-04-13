@@ -40,7 +40,11 @@ public class Main {
         gestor.buscarLibro(libreriaExterna, 1);
 
         //Eliminamos libro por isbn
-        //gestor.eliminarDeLista(libreriaExterna, 1);
+        gestor.eliminarDeLista(libreriaExterna, 1);
+
+        //Comprobamos que se ha eliminado
+        gestor.buscarLibro(libreriaExterna, 1);
+
 
 
         //Abrimos el menu para gestior las bibliiotecas
