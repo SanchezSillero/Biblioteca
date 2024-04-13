@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class LibreriaExterna implements InterfazAgregable, InterfazBuscador, InterfazEliminable {
     private ArrayList<Libro> librosFueraCatalogo = new ArrayList<>();
 
+
     @Override
     public void agregarLibro(Libro libro) {
         librosFueraCatalogo.add(libro);

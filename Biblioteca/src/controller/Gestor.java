@@ -1,6 +1,8 @@
 package controller;
+
 import external.LibreriaExterna;
 import model.*;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +14,7 @@ public class Gestor {
     //CONSTRUCTORES DE GESTOR
     public Gestor() {
     }
+
     public Gestor(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
@@ -59,6 +62,7 @@ public class Gestor {
                 case 1: {
                     System.out.println("Introduce el ISBN del libro");
                     long isbn = scanner.nextLong();
+                    biblioteca.buscarLibro(isbn);
 
                     // Aqui quiero buscar libro por isbn en la libreria externa
                     pulseEnter();
@@ -174,9 +178,11 @@ public class Gestor {
     public void agregarLibro(InterfazAgregable agregable, Libro libro) {
         agregable.agregarLibro(libro);
     }
+
     public void eliminarDeLista(InterfazEliminable eliminable, long isbn) {
         eliminable.eliminarDeLista(isbn);
     }
+
     public void buscarLibro(InterfazBuscador buscador, long isbn) {
         buscador.buscarLibro(isbn);
     }
