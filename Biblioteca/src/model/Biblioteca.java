@@ -2,11 +2,11 @@ package model;
 
 import java.util.ArrayList;
 
-public class Biblioteca implements InterfazBuscador {
+public abstract class Biblioteca implements InterfazBuscador {
     // ATRIBUTOS DE LA CLASE BIBLIOTECA
     private String nombre;
     private Persona director;
-    private Catalogo catalogo;
+   // private Catalogo catalogo;
 
 
     // CONSTRUCTORES DE LA CLASE BIBLIOTECA

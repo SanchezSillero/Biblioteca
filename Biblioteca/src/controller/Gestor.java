@@ -78,10 +78,17 @@ public class Gestor {
                     pulseEnter();
                     break;
                 }
-                case 4: { // aqui quiero que al crear un libro se cree tambien en la libreria externa si no existe
+                case 4: {
                     if (biblioteca.getCatalogo() == null) {
                         System.out.println("No existe ningún catálogo");
-                    } else {
+                        break;
+                    }
+                    if (biblioteca.getCatalogo().getListaLibros().size() >= biblioteca.getCatalogo().getCapacidad()){
+                        System.out.println("El catálogo está lleno. Borre algún libro primero");
+                        pulseEnter();
+                        break;
+                    }
+                    else {
                         if (biblioteca.getNombre().equalsIgnoreCase("Biblioteca Universidad")) {
                             System.out.println("La biblioteca universidad solo acepta libros de tipo ensayo");
                             if (biblioteca.getCatalogo().getListaLibros().size() < biblioteca.getCatalogo().getCapacidad()) {
