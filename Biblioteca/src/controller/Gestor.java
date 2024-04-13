@@ -59,23 +59,21 @@ public class Gestor {
 
             opcionSub = scanner.nextInt();
             switch (opcionSub) {
-                case 1: {
+                case 1: { // Buscar información sobre un libro aunque no este en el catalogo (lo busca en la libreria externa)
                     System.out.println("Introduce el ISBN del libro");
                     long isbn = scanner.nextLong();
                     biblioteca.buscarLibro(isbn);
-
-                    // Aqui quiero buscar libro por isbn en la libreria externa
                     pulseEnter();
                     break;
                 }
-                case 2: {
+                case 2: { //Construir un catálogo de n libros
                     System.out.println("Introduce la capacidad del catálogo (número de libros)");
                     int nLibros = scanner.nextInt();
                     biblioteca.crearCatalogo(nLibros);
                     pulseEnter();
                     break;
                 }
-                case 3: {
+                case 3: { //COnsultamos todos los libros del catalogo, el de la biblioteca
                     biblioteca.getCatalogo().mostrarCatalogo();
                     pulseEnter();
                     break;

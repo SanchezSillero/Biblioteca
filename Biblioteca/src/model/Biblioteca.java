@@ -27,7 +27,7 @@ public class Biblioteca implements InterfazBuscador {
     }
 
     //FUNCIONES
-    public void crearCatalogo(int nLibros) {                                                   //METODO PARA CREAR UN CATALOGO
+    public void crearCatalogo(int nLibros) {            //METODO PARA CREAR UN CATALOGO
         if (catalogo == null) {
             catalogo = new Catalogo(nLibros);
             int catalogoCapacidad = nLibros;
@@ -51,20 +51,6 @@ public class Biblioteca implements InterfazBuscador {
             System.out.println("No se encontró ningún libro con ese ISBN.");
         }
     }
-        
-        /*if (Biblioteca.this.catalogo != null) {
-            for (Libro libro : Biblioteca.this.catalogo.getListaLibros()) {
-                if (libro.getIsbn() == isbn) {
-                    libro.mostrarDatos();
-                    return;
-                }
-            }
-            System.out.println("No hay ningún libro con ese ISBN");
-        } else {
-            System.out.println("No hay ningún catálogo disponible para buscar libros");
-        }
-}*/
-
 
     //CLASE ANIDADA CATALOGO
     public class Catalogo implements InterfazAgregable {
@@ -90,7 +76,6 @@ public class Biblioteca implements InterfazBuscador {
             } else {
                 for (Libro libro : listaLibros) {
                     libro.mostrarDatos();
-                    System.out.println("-----------------------------------");
                 }
             }
 
