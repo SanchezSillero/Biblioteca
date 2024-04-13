@@ -163,8 +163,6 @@ public class Gestor {
                                     System.out.println("Opción no válida");
                                     break;
                             }
-
-
                         }
                     }
                     break;
@@ -206,6 +204,7 @@ public class Gestor {
         scanner.nextLine();
         scanner.nextLine();
     }
+
 
     //FUNCIONES PUENTE PARA LAS INTERFACES
     public void agregarLibro(InterfazAgregador agregador, Libro libro) {
