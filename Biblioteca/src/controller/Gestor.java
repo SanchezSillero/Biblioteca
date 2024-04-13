@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gestor {
-    Scanner scanner = new Scanner(System.in);
-    Biblioteca biblioteca;
-    long isbn;
+    private Scanner scanner = new Scanner(System.in);
+    private Biblioteca biblioteca;
+    private long isbn;
 
     //CONSTRUCTORES DE GESTOR
     public Gestor() {
@@ -17,30 +17,30 @@ public class Gestor {
     }
 
     //FUNCIONES DE GESTOR
-    public void menu(Biblioteca... bibliotecas) {
+    public void menu(Biblioteca... bibliotecas) { //los ... indica que el parametro es un array variable
         Scanner scanner = new Scanner(System.in);
         System.out.println("\t\t------BIENVENIDO AL GESTOR DE BIBLIOTECAS------");
         System.out.println("\n\n\t\t    Pulse Enter para continuar");
         scanner.nextLine();
 
         int opcion;
-        Gestor[] gestores = new Gestor[bibliotecas.length];
+        Gestor[] gestores = new Gestor[bibliotecas.length]; //creamos un array de gestores, uno para cada objeto Biblioteca
         for (int i = 0; i < bibliotecas.length; i++) {
             gestores[i] = new Gestor(bibliotecas[i]);
         }
 
         do {
             System.out.println("¿Qué biblioteca desea gestionar?");
-            for (int i = 0; i < bibliotecas.length; i++) {
+            for (int i = 0; i < bibliotecas.length; i++) {  //itteramos para mostrar en pantalla un indice con las bibliotecas que tenemos
                 System.out.println("\t" + (i + 1) + ". " + bibliotecas[i].getNombre());
             }
             System.out.println("\t" + (bibliotecas.length + 1) + ". Salir");
 
             opcion = scanner.nextInt();
-            if (opcion >= 1 && opcion <= bibliotecas.length) {
+            if (opcion >= 1 && opcion <= bibliotecas.length) {//validamos si la opcion esta dentro del rango de bibliotecas
                 System.out.println("\t-----" + bibliotecas[opcion - 1].getNombre() + "-----");
-                gestores[opcion - 1].menuSub(bibliotecas[opcion - 1]);
-            } else if (opcion == bibliotecas.length + 1) {
+                gestores[opcion - 1].menuSub(bibliotecas[opcion - 1]); //accedemos al metodo menuSub del gestor correspondiente a la biblioteca seleccionada
+            } else if (opcion == bibliotecas.length + 1) { //verificamos si la opcion es la del apendice salir del menu
                 System.out.println("¡HASTA PRONTO!");
             } else {
                 System.out.println("Opción no válida");

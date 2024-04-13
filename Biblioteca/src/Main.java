@@ -43,12 +43,8 @@ public class Main {
 
 
         //Abrimos el menu para gestior las bibliiotecas
-        //gestor.menu(bibliotecaMunicipal,bibliotecaUniversidad); //podemos meter tantas bibliotecas como tengamos instanciadas
-
-
-
+        gestor.menu(bibliotecaMunicipal,bibliotecaUniversidad); //podemos meter tantas bibliotecas como tengamos instanciadas
 
     }
-
 }
 
